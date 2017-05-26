@@ -1,3 +1,4 @@
+"use strict"
 /**
  * This file contains all persistence logic
  */
