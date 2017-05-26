@@ -42,8 +42,9 @@ if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
 
   }
 }
+console.log("WTF with mongo URL?? " + mongoURL);
 
-persistence.init(mongoURL);
+
 
 var db = null,
     dbDetails = new Object();
@@ -53,6 +54,7 @@ var initDb = function(callback) {
 
   var mongodb = require('mongodb');
   if (mongodb == null) return;
+  console.log("ORiginal MongoURL " + mongoURL);
 
   mongodb.connect(mongoURL, function(err, conn) {
     if (err) {
@@ -68,6 +70,8 @@ var initDb = function(callback) {
     console.log('Connected to MongoDB at: %s', mongoURL);
   });
 };
+
+
 
 app.get('/', function (req, res) {
   // try to initialize the db on every request if it's not already
@@ -114,5 +118,7 @@ initDb(function(err){
 
 app.listen(port, ip);
 console.log('Server running on http://%s:%s', ip, port);
+
+persistence.init(mongoURL);
 
 module.exports = app ;
