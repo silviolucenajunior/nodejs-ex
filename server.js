@@ -106,6 +106,9 @@ app.get('/pagecount', function (req, res) {
   }
 });
 
+var gestantesRouter = require('./modules/gestante/routes');
+app.use('/gestante', gestantesRouter);
+
 // error handling
 app.use(function(err, req, res, next){
   console.error(err.stack);
