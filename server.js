@@ -16,6 +16,9 @@ nunjucks.configure({
   express: app
 });
 
+app.use(express.static(__dirname + '/www'));
+
+
 app.use(morgan('combined'))
 
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
@@ -106,7 +109,7 @@ app.get('/pagecount', function (req, res) {
   }
 });
 
-var gestantesRouter = require('./modules/gestante/routes');
+var gestantesRouter = require(__dirname + '/modules/gestante/routes');
 app.use('/gestante', gestantesRouter);
 
 // error handling
