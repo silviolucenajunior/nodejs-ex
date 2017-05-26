@@ -2,7 +2,7 @@
 /**
  * This file contains all persistence logic
  */
-var url = 'mongodb://localhost:27017/maedecorpo';
+var url = 'mongodb://172.30.217.224:27017/application';
 var database = null;
 var MongoClient = require('mongodb').MongoClient;
 var database = null;
