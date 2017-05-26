@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<!--
+*Nome completo da gestante:
+*Data de nascimento:
+*Endereço:
+*Bairro:
+*Cidade:   
+Telefone:
+*Situação conjugal:
+*Data provável do parto:
+Nome do bebê:
+*Acompanhante no parto:
+Obstetra:
+Plano de saúde? Qual?
+-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+        <title>Menu</title>
+        <link rel="stylesheet" type="text/css" href="/third/semantic/dist/semantic.min.css">
+        <script
+            src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous"></script>
+            <script src="/third/semantic/dist/semantic.min.js"></script>
+    </head>
+    <body style="background-color: #f3004a">
+        
+        <div class="ui stackable menu">
+            <div class="item">
+                Gestantes
+            </div>
+            <div class="item">
+                Contatos
+            </div>
+            <div class="item">
+                Cursos
+            </div>
+        </div>
+        <div class="ui segment" style="margin: 10px;" id="module-gestante">
+            <h3 class="ui header">Gestante</h3>
+            <div class="ui menu">
+                <a class="active item" id="new">
+                    Novo
+                </a>
+                <a class="item disabled" id="edit">
+                    Editar
+                </a>
+                <a class="item disabled" id="view">
+                    Visualizar
+                </a>
+                <a class="item disabled" id="delete">
+                    Deletar
+                </a>
+                <div class='right menu'>
+                    <div class="ui item input">
+                        <input type="text" placeholder="Pesquisar" id="search-box" />
+                    </div>
+                </div>
+            </div>
+
+            <table class="ui compact celled table" id="list-gestante">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox"/></th>
+                        <th>Nome</th>
+                        <th>Bebe</th>
+                        <th>Telefone</th>
+                        <th>Obstreta</th>
+                        <th>Plano</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for gestante in gestantes %}
+                    <tr class="item-row" data-guid="{{gestante._id}}">
+                        <td class="collapsing">
+                            <input type="checkbox" class="item-row-checkbox"/>
+                        </td>
+                        <td data-field="Nome" data-value="{{gestante.Nome}}">{{gestante.Nome}}</td>
+                        <td data-field="Bebe" data-value="{{gestante.Bebe}}">{{gestante.NomeDoBebe}}</td>
+                        <td data-field="Telefone" data-value="{{gestante.Telefone}}">{{gestante.Telefone}}</td>
+                        <td data-field="Obstreta" data-value="{{gestante.Obstreta}}">{{gestante.Obstreta}}</td>
+                        <td data-field="Plano" data-value="{{gestante.Plano}}">{{gestante.PlanoDeSaude}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div style="display: none">
+            <table>
+            <tr class="item-row" data-guid="" id="row-base">
+            <td class="collapsing">
+                <input type="checkbox" class="item-row-checkbox" />
+            </td>
+            <td data-field="Nome" data-value=""></td>
+            <td data-field="Bebe" data-value=""></td>
+            <td data-field="Telefone" data-value=""></td>
+            <td data-field="Obstreta" data-value=""></td>
+            <td data-field="Plano" data-value=""></td>
+           </tr>
+           </table>
+        </div>
+        <div class="ui modal" id="modal-gestante">
+            <i class="close icon"></i>
+            <div class="header">
+                Novo Registro de Gestante
+            </div>
+            <div class="content">
+                <form class="ui form" id="form-gestante">
+                    <div class="fields">
+                        <div class="eight wide field">
+                            <label>Nome</label>
+                            <input type="text" name="Nome" placeholder="Nome" />
+                        </div>
+                        <div class="field">
+                            <label>Nascimento</label>
+                            <div class="tree fields">
+                                <div class="field">
+                                    <select name="NascimentoDia">
+                                        <option value="">Dia</option>
+                                        <option value="01">01</option>
+                                        <option value="02">02</option>
+                                        <option value="03">03</option>
+                                        <option value="04">04</option>
+                                        <option value="05">05</option>
+                                        <option value="06">06</option>
+                                        <option value="07">07</option>
+                                        <option value="08">08</option>
+                                        <option value="09">09</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                        <option value="13">13</option>
+                                        <option value="14">14</option>
+                                        <option value="15">15</option>
+                                        <option value="16">16</option>
+                                        <option value="17">17</option>
+                                        <option value="18">18</option>
+                                        <option value="19">19</option>
+                                        <option value="20">20</option>
+                                        <option value="21">21</option>
+                                        <option value="22">22</option>
+                                        <option value="23">23</option>
+                                        <option value="24">24</option>
+                                        <option value="25">25</option>
+                                        <option value="26">26</option>
+                                        <option value="27">27</option>
+                                        <option value="28">28</option>
+                                        <option value="29">29</option>
+                                        <option value="30">30</option>
+                                        <option value="31">31</option>
+                                    </select>
+                                </div>
+                                <div class="field">
+                                    <select name="NascimentoMes">
+                                        <option value="">Mês</option>
+                                        <option value="01">01</option>
+                                        <option value="02">02</option>
+                                        <option value="03">03</option>
+                                        <option value="04">04</option>
+                                        <option value="05">05</option>
+                                        <option value="06">06</option>
+                                        <option value="07">07</option>
+                                        <option value="08">08</option>
+                                        <option value="09">09</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                    </select>
+                                </div>
+                                <div class="field">
+                                    <input name="NascimentoAno" type="text" placeholder="Ano" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fields">
+                        <div class="field">
+                            <label>Endereço</label>
+                            <input name="Endereco" type="text" placeholder="Endereço" />
+                        </div>
+                        <div class="field">
+                            <label>Complemento</label>
+                            <input name="Complemento" type="text" placeholder="Complemento" />
+                        </div>
+                    </div>
+                    <div class="fields">
+                        <div class="field">
+                            <label>Bairro</label>
+                            <input name="Bairro" type="text" placeholder="Bairro" />
+                        </div>
+                        <div class="field">
+                            <label>Cidade</label>
+                            <input name="Cidade" type="text" placeholder="Cidade" />
+                        </div>
+                        <div class="field">
+                            <label>Estado</label>
+                            <input name="Estado" type="text" placeholder="Estado" />
+                        </div>
+                    </div>
+                    <div class="fields">
+                        <div class="field">
+                            <label>Situação Conjugal</label>
+                            <input name="SituacaoConjugal" type="text" placeholder="Situação Conjugal" />
+                        </div>
+                        <div class="field">
+                            <label>Acompanhante no Parto</label>
+                            <input name="AcompanhanteNoParto" type="text" placeholder="Acompanhante no parto" />
+                        </div>
+                        <div class="field">
+                            <label>DPP</label>
+                            <div class="tree fields">
+                                <div class="field">
+                                    <select name="DPPDia">
+                                        <option value="">Dia</option>
+                                        <option value="01">01</option>
+                                        <option value="02">02</option>
+                                        <option value="03">03</option>
+                                        <option value="04">04</option>
+                                        <option value="05">05</option>
+                                        <option value="06">06</option>
+                                        <option value="07">07</option>
+                                        <option value="08">08</option>
+                                        <option value="09">09</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                        <option value="13">13</option>
+                                        <option value="14">14</option>
+                                        <option value="15">15</option>
+                                        <option value="16">16</option>
+                                        <option value="17">17</option>
+                                        <option value="18">18</option>
+                                        <option value="19">19</option>
+                                        <option value="20">20</option>
+                                        <option value="21">21</option>
+                                        <option value="22">22</option>
+                                        <option value="23">23</option>
+                                        <option value="24">24</option>
+                                        <option value="25">25</option>
+                                        <option value="26">26</option>
+                                        <option value="27">27</option>
+                                        <option value="28">28</option>
+                                        <option value="29">29</option>
+                                        <option value="30">30</option>
+                                        <option value="31">31</option>
+                                    </select>
+                                </div>
+                                <div class="field">
+                                    <select name="DPPMes">
+                                        <option value="">Mês</option>
+                                        <option value="01">01</option>
+                                        <option value="02">02</option>
+                                        <option value="03">03</option>
+                                        <option value="04">04</option>
+                                        <option value="05">05</option>
+                                        <option value="06">06</option>
+                                        <option value="07">07</option>
+                                        <option value="08">08</option>
+                                        <option value="09">09</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                    </select>
+                                </div>
+                                <div class="field">
+                                    <input name="DPPAno" type="text" placeholder="Ano" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fields">
+                        <div class="field">
+                            <label>Nome do Bebe</label>
+                            <input name="NomeDoBebe" type="text" placeholder="Nome Do Bebe" />
+                        </div>
+                        <div class="field">
+                            <label>Obstreta</label>
+                            <input name="Obstreta" type="text" placeholder="Obstreta" />
+                        </div>
+                        <div class="field">
+                            <label>Plano de Saude</label>
+                            <input name="PlanoDeSaude" type="text" placeholder="Plano de saude" />
+                        </div>
+                    </div>
+                    <input type="hidden" name="_id" value="" />
+                </form>
+            </div>
+            <div class="actions">
+                <div class="ui black deny button">
+                    Cancel
+                </div>
+                <div class="ui positive button" id="save">
+                    Save
+                </div>
+            </div>
+        </div>
+        <script src="/modules/gestante.js"></script>
+        </script>
+    </body>
+</html>

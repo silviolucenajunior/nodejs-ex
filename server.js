@@ -3,11 +3,19 @@ var express = require('express'),
     fs      = require('fs'),
     app     = express(),
     eps     = require('ejs'),
-    morgan  = require('morgan');
+    nunjucks = require('nunjucks')
+    morgan  = require('morgan'),
+    persistence = require(__dirname + '/core/persistence');
     
 Object.assign=require('object-assign')
 
-app.engine('html', require('ejs').renderFile);
+//app.engine('html', require('ejs').renderFile);
+nunjucks.configure({
+  autoescape: true,
+  cache: false,
+  express: app
+});
+
 app.use(morgan('combined'))
 
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
@@ -34,6 +42,9 @@ if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
 
   }
 }
+
+persistence.init(mongoURL);
+
 var db = null,
     dbDetails = new Object();
 
